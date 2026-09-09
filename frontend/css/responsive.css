@@ -1,0 +1,94 @@
+/* ==========================================================================
+   ScamShield - Responsive Breakpoints & Mobile Optimization
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 2.3rem;
+  }
+  .result-body {
+    grid-template-columns: 240px 1fr;
+    gap: 1.75rem;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-navy);
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-links.nav-open {
+    display: flex;
+  }
+
+  .hero {
+    padding: 3rem 0 2.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.9rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .analyzer-card {
+    padding: 1.5rem;
+    margin-top: -1.5rem;
+  }
+
+  .result-body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .gauge-container {
+    padding: 1.25rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .analyzer-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .circular-gauge {
+    width: 150px;
+    height: 150px;
+  }
+
+  .gauge-score {
+    font-size: 2.1rem;
+  }
+}

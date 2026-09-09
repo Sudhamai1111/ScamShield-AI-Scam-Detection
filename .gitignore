@@ -1,0 +1,27 @@
+# Python byte-code and virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Testing cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Secrets & Credentials
+credentials/
+*.pem
+*.key
+serviceAccountKey.json
+
+# Local runtime data
+data/local_reports.json
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

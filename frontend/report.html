@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Scam ? ScamShield Community Intelligence</title>
+  <meta name="description" content="Report a scam message to help protect your community. Safe and privacy-first scam reporting.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-link">
+        <span class="logo-shield">🛡️</span>
+        <span class="logo-text">ScamShield</span>
+        <span class="logo-badge">Community</span>
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavBtn" aria-label="Toggle navigation menu">☰</button>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#analyzerSection" class="nav-link">Analyze</a></li>
+          <li><a href="report.html" class="nav-link active">Report Scam</a></li>
+          <li><a href="statistics.html" class="nav-link">Statistics</a></li>
+          <li><a href="about.html" class="nav-link">About & Viva</a></li>
+          <li><a href="index.html#analyzerSection" class="nav-link nav-cta">Quick Check</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container" style="max-width: 800px; padding-top: 2rem;">
+    
+    <!-- Title & Privacy Banner -->
+    <div style="margin-bottom: 2rem;">
+      <h1 style="font-size: 2.2rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 0.5rem;">
+        Submit a Scam Report
+      </h1>
+      <p style="color: var(--text-secondary); font-size: 1.05rem;">
+        Help alert fellow citizens by contributing suspicious messages and phishing campaigns to our awareness database.
+      </p>
+    </div>
+
+    <!-- MANDATORY CREDENTIAL WARNING ALERT -->
+    <div class="alert-box alert-warning">
+      <span style="font-size: 1.4rem;">⚠️</span>
+      <div>
+        <strong>Privacy & Security Warning:</strong>
+        <div>Do not include passwords, OTPs, PINs, CVVs, or other confidential credentials in your report. All submitted messages are sanitized for community research.</div>
+      </div>
+    </div>
+
+    <!-- Success Feedback Banner (Hidden by default) -->
+    <div id="successAlert" class="alert-box alert-success" style="display: none;">
+      <span style="font-size: 1.4rem;">✓</span>
+      <div>
+        <strong>Report Submitted Successfully!</strong>
+        <div id="successDetails">Thank you for contributing to public awareness. Your report has been securely logged.</div>
+      </div>
+    </div>
+
+    <!-- Error Alert (Hidden by default) -->
+    <div id="errorAlert" class="alert-box alert-danger" style="display: none;">
+      <span style="font-size: 1.4rem;">✕</span>
+      <div>
+        <strong>Submission Failed:</strong>
+        <span id="errorMessage">Please check the form inputs.</span>
+      </div>
+    </div>
+
+    <!-- Report Submission Form -->
+    <div class="card" style="box-shadow: var(--shadow-lg);">
+      <form id="reportForm">
+        
+        <!-- Scam Message Content -->
+        <div class="form-group">
+          <label for="scamMessage" class="form-label">
+            Scam Message Text <span style="color: var(--risk-high);">*</span>
+          </label>
+          <textarea 
+            id="scamMessage" 
+            class="form-control" 
+            placeholder="Paste the suspicious message, SMS, email text, or offer here..." 
+            rows="4" 
+            required 
+            minlength="5" 
+            maxlength="5000"
+          ></textarea>
+          <small style="color: var(--text-muted); display: block; margin-top: 4px;">
+            Please ensure you have removed your own personal account numbers before pasting.
+          </small>
+        </div>
+
+        <!-- Category & Platform Grid -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+          
+          <div class="form-group">
+            <label for="scamCategory" class="form-label">
+              Scam Category <span style="color: var(--risk-high);">*</span>
+            </label>
+            <select id="scamCategory" class="form-control" required>
+              <option value="Prize/Lottery">Prize / Lottery / Lucky Draw</option>
+              <option value="Fake Job">Fake Job / Work From Home</option>
+              <option value="Investment">Investment / Crypto Return</option>
+              <option value="Banking">Banking / Credit Card / CVV</option>
+              <option value="KYC">KYC / Account Blocked / Suspension</option>
+              <option value="Threat/Urgency">Threat / Electricity / Legal Action</option>
+              <option value="Shopping">Fake Shopping Offer</option>
+              <option value="SMS">Phishing SMS</option>
+              <option value="WhatsApp">WhatsApp Fraud</option>
+              <option value="Email">Phishing Email</option>
+              <option value="Social Media">Social Media Impersonation</option>
+              <option value="Other">Other Suspicious Offer</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="scamPlatform" class="form-label">
+              Source / Platform <span style="color: var(--risk-high);">*</span>
+            </label>
+            <select id="scamPlatform" class="form-control" required>
+              <option value="SMS">SMS / Text Message</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Email">Email</option>
+              <option value="Telegram">Telegram</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Facebook">Facebook</option>
+              <option value="Twitter/X">Twitter / X</option>
+              <option value="Phone Call">Phone Call / Robocall</option>
+              <option value="Website">Suspicious Website</option>
+              <option value="Other">Other Platform</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Sender & URL Grid -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+          
+          <div class="form-group">
+            <label for="senderInfo" class="form-label">Sender Info (Optional)</label>
+            <input 
+              type="text" 
+              id="senderInfo" 
+              class="form-control" 
+              placeholder="e.g. +91 98765 43210 or @fake_handle"
+              maxlength="100"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="websiteUrl" class="form-label">Suspicious URL (Optional)</label>
+            <input 
+              type="text" 
+              id="websiteUrl" 
+              class="form-control" 
+              placeholder="e.g. http://bit.ly/claim-gift"
+              maxlength="500"
+            >
+          </div>
+
+        </div>
+
+        <!-- Description / Context -->
+        <div class="form-group">
+          <label for="reportDescription" class="form-label">Additional Details / Context</label>
+          <textarea 
+            id="reportDescription" 
+            class="form-control" 
+            placeholder="Describe how you received this message, what the scammer asked you to do, or any financial loss attempted..." 
+            rows="3"
+            maxlength="2000"
+          ></textarea>
+        </div>
+
+        <!-- Anonymous Checkbox -->
+        <div class="form-group" style="display: flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem;">
+          <input type="checkbox" id="anonymousCheck" style="width: 18px; height: 18px; cursor: pointer;" checked>
+          <label for="anonymousCheck" style="font-size: 0.95rem; cursor: pointer; color: var(--text-primary);">
+            Submit as Anonymous Report (Hides any sender or reporter metadata in public stats)
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <div style="margin-top: 1.75rem;">
+          <button type="submit" id="submitReportBtn" class="btn btn-primary" style="width: 100%;">
+            <span id="reportBtnText">🛡️ Submit Scam Report</span>
+            <span id="reportBtnSpinner" class="spinner" style="display: none;"></span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-disclaimer-box">
+        <strong>Confidentiality Policy:</strong> Reports submitted to ScamShield are aggregated to help educate users against ongoing scams. We never share raw contact info or private details.
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 ScamShield System.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/report.js"></script>
+</body>
+</html>

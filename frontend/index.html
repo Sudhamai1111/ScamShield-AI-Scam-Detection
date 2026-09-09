@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScamShield ? AI-Based Scam Detection & Awareness System</title>
+  <meta name="description" content="Analyze suspicious messages, SMS, emails, and job offers with explainable AI scam detection.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-link">
+        <span class="logo-shield">🛡️</span>
+        <span class="logo-text">ScamShield</span>
+        <span class="logo-badge">v1.0 AI</span>
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavBtn" aria-label="Toggle navigation menu">☰</button>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="#analyzerSection" class="nav-link">Analyze</a></li>
+          <li><a href="report.html" class="nav-link">Report Scam</a></li>
+          <li><a href="statistics.html" class="nav-link">Statistics</a></li>
+          <li><a href="about.html" class="nav-link">About & Viva</a></li>
+          <li><a href="#analyzerSection" class="nav-link nav-cta">Quick Check</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag">🔒 Explainable Threat Intelligence</div>
+      <h1 class="hero-title">Think Before You Click.</h1>
+      <p class="hero-subtitle">
+        Analyze suspicious SMS, WhatsApp messages, job offers, prize notifications, and web links. 
+        Understand the warning signs before taking action.
+      </p>
+      <div class="hero-actions">
+        <a href="#analyzerSection" class="btn btn-primary">🔍 Analyze a Message</a>
+        <a href="about.html#safetyTips" class="btn btn-secondary">📖 Learn Scam Safety</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <main class="container">
+    
+    <!-- Analyzer Tool Section -->
+    <section id="analyzerSection" class="analyzer-card">
+      <div class="analyzer-header">
+        <h2>Suspicious Message Inspector</h2>
+        <p>Paste any suspicious SMS, email, job offer, or lottery message to evaluate potential risk indicators.</p>
+      </div>
+
+      <!-- Quick Fill Samples for Instant Demonstration -->
+      <div class="sample-prompts">
+        <span class="sample-title">Try Samples:</span>
+        <button type="button" class="sample-btn sample-scam" data-sample="prize">🎁 Prize & OTP Scam</button>
+        <button type="button" class="sample-btn sample-scam" data-sample="job">💼 Fake Job Offer</button>
+        <button type="button" class="sample-btn sample-scam" data-sample="kyc">⚠️ Electricity & KYC Threat</button>
+        <button type="button" class="sample-btn sample-legit" data-sample="legit">✅ Genuine Bank OTP Alert</button>
+      </div>
+
+      <!-- Form -->
+      <form id="analyzerForm">
+        <div class="textarea-wrapper">
+          <label for="messageInput" class="form-label sr-only">Suspicious message text</label>
+          <textarea 
+            id="messageInput" 
+            class="form-control" 
+            placeholder="Paste a suspicious message here... Example: Congratulations! You won ₹50,000. Claim immediately by clicking http://bit.ly/example. Pay ₹499 fee and send your OTP."
+            rows="5"
+            required
+            minlength="10"
+            maxlength="5000"
+          ></textarea>
+        </div>
+
+        <div class="textarea-footer">
+          <span id="validationHint">Minimum 10 characters required</span>
+          <span id="charCount" class="char-counter">0 / 5000</span>
+        </div>
+
+        <!-- Error Feedback Area -->
+        <div id="errorAlert" class="alert-box alert-danger" style="display: none; margin-top: 1rem;">
+          <span class="alert-icon">⚠️</span>
+          <span id="errorMessage">Please enter a valid message.</span>
+        </div>
+
+        <div class="analyzer-actions">
+          <button type="button" id="clearBtn" class="btn btn-outline">Clear</button>
+          <button type="submit" id="analyzeBtn" class="btn btn-primary">
+            <span id="btnText">🛡️ Analyze Message</span>
+            <span id="btnSpinner" class="spinner" style="display: none;"></span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Results Dashboard (Hidden until analyzed) -->
+    <section id="resultsDashboard" class="results-section" style="display: none;">
+      <div class="result-card">
+        
+        <!-- Result Header -->
+        <div class="result-header">
+          <div class="result-title-group">
+            <h3>Automated Risk Assessment</h3>
+            <p id="analysisSummary">Evaluating detected threat signals...</p>
+          </div>
+          <div>
+            <span id="riskBadge" class="risk-badge badge-high">High Risk</span>
+          </div>
+        </div>
+
+        <!-- Result Body -->
+        <div class="result-body">
+          
+          <!-- Left Column: Circular Risk Gauge -->
+          <div class="gauge-container">
+            <div class="circular-gauge">
+              <svg viewBox="0 0 160 160">
+                <circle class="gauge-bg" cx="80" cy="80" r="70"></circle>
+                <circle id="gaugeProgress" class="gauge-progress" cx="80" cy="80" r="70"></circle>
+              </svg>
+              <div class="gauge-text">
+                <span id="gaugeScoreValue" class="gauge-score">0</span>
+                <span class="gauge-scale">/ 100</span>
+              </div>
+            </div>
+            
+            <div class="gauge-meta">
+              <strong>Risk Score</strong>
+              <div>Signal Confidence: <span id="confidenceValue">85%</span></div>
+              <small style="display: block; color: var(--text-muted); margin-top: 4px;">
+                (Severity assessment, not probability of fraud)
+              </small>
+            </div>
+          </div>
+
+          <!-- Right Column: Details & Recommendations -->
+          <div class="results-details">
+            
+            <!-- Indicators Cards -->
+            <div class="indicators-section">
+              <h4>🎯 What We Detected (<span id="indicatorCount">0</span>)</h4>
+              <div id="indicatorsGrid" class="indicator-grid">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Plain-Language Explanation -->
+            <div class="explanation-box">
+              <div class="explanation-title">💡 Why is this suspicious?</div>
+              <p id="explanationText" class="explanation-text">
+                Detailed contextual rationale will be displayed here.
+              </p>
+            </div>
+
+            <!-- Tailored Recommendations -->
+            <div class="recommendations-box">
+              <div class="recommendations-title">🛡️ Recommended Safety Actions</div>
+              <ul id="recommendationsList" class="recommendations-list">
+                <!-- Dynamically populated -->
+              </ul>
+            </div>
+
+            <!-- Mandatory Legal & Safety Disclaimer -->
+            <div class="disclaimer-banner">
+              <strong>Important Disclaimer:</strong>
+              <span id="disclaimerText">
+                ScamShield provides an automated risk assessment based on detected indicators. 
+                It cannot determine with 100% certainty whether a message is genuine or fraudulent. 
+                Always independently verify important requests through official channels.
+              </span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Educational Pillars / Awareness Quick Info -->
+    <section style="margin-top: 4rem;">
+      <div class="text-center mb-3">
+        <h2 style="font-size: 1.8rem; font-weight: 700; color: var(--primary-navy);">Core Scam Vectors Explained</h2>
+        <p style="color: var(--text-muted);">Common psychological manipulation tactics used by online scammers</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+        
+        <div class="card">
+          <div class="card-title">⏰ Artificial Urgency</div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">
+            Scammers demand immediate action within hours to trigger panic and prevent you from consulting friends or official channels.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🔑 OTP Solicitations</div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">
+            One-time passwords are the final barrier protecting your accounts. Legitimate banks and service providers will never ask you to forward an OTP.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🔗 Obfuscated Links</div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">
+            Shortened URLs (bit.ly, tinyurl) mask malicious destination domains. Even HTTPS websites can be fraudulent—HTTPS only encrypts connection transit.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">💼 Upfront Advance Fees</div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">
+            Whether disguised as a lottery processing charge, courier fee, or job registration fee, legitimate organizations never demand payment to release your money.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem; color: white; font-weight: 700; font-size: 1.2rem;">
+            🛡️ ScamShield
+          </div>
+          <p style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem;">
+            An explainable cybersecurity detection system helping users analyze suspicious digital communication and prevent financial fraud.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Features</h4>
+          <ul>
+            <li><a href="index.html#analyzerSection">Message Analyzer</a></li>
+            <li><a href="report.html">Report Scam</a></li>
+            <li><a href="statistics.html">Threat Stats</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Education</h4>
+          <ul>
+            <li><a href="about.html#safetyTips">Safety Guidelines</a></li>
+            <li><a href="about.html#viva">Viva & Interview Q&A</a></li>
+            <li><a href="about.html#tech">Architecture</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Project Info</h4>
+          <ul>
+            <li>Python Flask REST API</li>
+            <li>Firebase Firestore</li>
+            <li>Vanilla JS Engine</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-disclaimer-box">
+        <strong>Academic & Legal Notice:</strong> ScamShield is an educational decision-support tool. It computes risk indicators and should not be used as a sole determinant in legal or financial investigations. Never share personal credentials online.
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2026 ScamShield System. Built for academic demonstration & placement viva excellence.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
