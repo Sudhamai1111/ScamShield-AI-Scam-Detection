@@ -33,7 +33,17 @@ class TextProcessor:
 
     @classmethod
     def extract_urls(cls, text: str) -> list:
-        raw_matches = cls.URL_REGEX.findall(text)
+        # Normalize common URL obfuscation used to evade basic text scanners.
+        # Examples: hxxp://bit[dot]ly/path -> http://bit.ly/path
+        url_text = re.sub(r"\\bhxxps(?=://)", "https", text, flags=re.IGNORECASE)
+        url_text = re.sub(r"\\bhxxp(?=://)", "http", url_text, flags=re.IGNORECASE)
+        url_text = re.sub(
+            r"\\s*(?:\\[\\s*dot\\s*\\]|\\(\\s*dot\\s*\\)|\\{\\s*dot\\s*\\})\\s*",
+            ".",
+            url_text,
+            flags=re.IGNORECASE,
+        )
+        raw_matches = cls.URL_REGEX.findall(url_text)
         analyzed_links = []
         seen = set()
 
