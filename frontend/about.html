@@ -3,265 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About ScamShield ? System Architecture, Safety & Viva Guide</title>
-  <meta name="description" content="Overview of ScamShield architecture, explainable AI detection rules, safety guidelines, and college presentation viva Q&A.">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/dashboard.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <meta name="description" content="Explore how ScamShield detects suspicious messages, protects users, and explains risk indicators. Includes project architecture and viva questions.">
+  <title>About & Viva | ScamShield</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#101b32;--navy2:#172744;--ink:#17243b;--muted:#66748b;--teal:#0d9488;--cyan:#22c4c8;--line:#e4eaf1;--paper:#f5f8fb;--white:#fff;--soft:#eaf7f6;--shadow:0 16px 45px rgba(16,35,62,.08)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.65}a{color:inherit;text-decoration:none}.container{width:min(1160px,calc(100% - 40px));margin:auto}
+    .site-header{height:76px;background:rgba(15,26,47,.97);color:#eaf2ff;position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(255,255,255,.09);backdrop-filter:blur(12px)}.header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:11px;font:800 21px Manrope,sans-serif;letter-spacing:-.5px}.brand-mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#34c6d0,#2875d9);font-size:20px;box-shadow:0 5px 18px #22c4c844}.brand small{font:700 10px 'DM Sans';letter-spacing:1px;color:#70e3df;border:1px solid #267c89;border-radius:20px;padding:3px 8px;margin-left:3px}.nav-links{display:flex;align-items:center;gap:7px;list-style:none;margin:0;padding:0}.nav-link{display:block;padding:10px 13px;border-radius:9px;color:#c4cfdf;font-weight:600;font-size:14px;transition:.2s}.nav-link:hover,.nav-link.active{background:#203b59;color:#fff}.nav-link.active{box-shadow:inset 0 -2px #29c2c2}.nav-cta{background:#2852c7;color:#fff}.mobile-nav-toggle{display:none;background:transparent;border:1px solid #52627a;color:white;border-radius:8px;padding:7px 11px;font-size:19px}
+    .hero{background:radial-gradient(ellipse at 78% 10%,#1e5670 0,transparent 34%),linear-gradient(125deg,#101b32,#172b49 65%,#123b50);color:white;padding:76px 0 82px;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;width:420px;height:420px;border:1px solid #ffffff12;border-radius:50%;right:-120px;bottom:-290px;box-shadow:0 0 0 45px #ffffff08,0 0 0 90px #ffffff05}.hero-content{position:relative;z-index:1;max-width:850px}.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #4c8790;background:#ffffff0c;color:#8ce6e0;border-radius:30px;padding:7px 13px;font-size:12px;font-weight:700;letter-spacing:.7px;text-transform:uppercase}.hero h1{font:800 clamp(36px,5vw,58px)/1.12 Manrope,sans-serif;letter-spacing:-2px;margin:22px 0 16px}.hero h1 span{color:#62ded5}.hero p{font-size:17px;color:#c2d0e1;max-width:720px;margin:0}.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}.meta-pill{font-size:12px;color:#e2f3f5;background:#ffffff12;border:1px solid #ffffff20;border-radius:8px;padding:7px 11px}
+    .page-content{padding:0 0 76px}.intro-strip{margin-top:-28px;position:relative;z-index:2;background:white;border:1px solid var(--line);border-radius:16px;padding:22px 26px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:20px;align-items:center}.intro-main strong{display:block;font:800 17px Manrope}.intro-main span{font-size:13px;color:var(--muted)}.stat-mini{border-left:1px solid var(--line);padding-left:22px}.stat-mini b{display:block;font:800 20px Manrope;color:var(--teal)}.stat-mini span{font-size:12px;color:var(--muted)}
+    .section{padding-top:66px;scroll-margin-top:90px}.section-head{max-width:720px;margin-bottom:25px}.kicker{color:var(--teal);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:800}.section h2{font:800 clamp(25px,3vw,34px)/1.2 Manrope;margin:8px 0 10px;letter-spacing:-.8px}.section-head p{margin:0;color:var(--muted);font-size:15px}.problem-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.panel,.feature-card,.step-card,.safety-card,.faq-item{background:white;border:1px solid var(--line);border-radius:15px;box-shadow:0 5px 20px #142b4607}.panel{padding:25px}.panel h3{font:800 18px Manrope;margin:0 0 10px}.panel p{color:var(--muted);margin:0}.callout{margin-top:18px;padding:15px 17px;background:var(--soft);border-left:3px solid var(--teal);border-radius:8px;color:#245d5b;font-size:14px}.challenge-list{display:grid;gap:11px}.challenge{display:flex;gap:12px;align-items:flex-start;padding:13px;background:#f8fafc;border-radius:10px}.challenge-icon{width:32px;height:32px;flex:0 0 32px;border-radius:9px;background:#fff0ed;display:grid;place-items:center}.challenge b{display:block;font-size:14px}.challenge span{font-size:12px;color:var(--muted)}
+    .architecture{background:linear-gradient(135deg,#111e35,#1b3454);border-radius:18px;padding:28px;color:white;box-shadow:var(--shadow)}.architecture-top{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:22px}.architecture-top h3{font:800 19px Manrope;margin:0}.architecture-top span{font-size:11px;color:#8de1dc;border:1px solid #367d86;padding:5px 9px;border-radius:20px}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.flow-step{min-height:148px;background:#ffffff0b;border:1px solid #ffffff20;border-radius:12px;padding:17px;position:relative}.flow-step:not(:last-child):after{content:"→";position:absolute;right:-13px;top:46%;z-index:1;color:#5fe0d4;font-size:19px;font-weight:800}.flow-num{font-size:10px;color:#70ded7;letter-spacing:1px;font-weight:800}.flow-step h4{font:700 14px Manrope;margin:9px 0 5px}.flow-step p{font-size:12px;color:#bdcadb;margin:0}.stack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:15px}.stack-card{padding:17px;border:1px solid #ffffff1c;border-radius:11px;background:#ffffff08}.stack-card b{display:block;font-size:13px;color:#fff}.stack-card span{font-size:12px;color:#b9c8da}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature-card{padding:21px}.feature-icon{width:42px;height:42px;display:grid;place-items:center;background:#e8f7f6;border-radius:12px;font-size:20px}.feature-card h3{font:700 15px Manrope;margin:13px 0 6px}.feature-card p{font-size:13px;color:var(--muted);margin:0}
+    .safety-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.safety-card{padding:19px}.safety-card .number{font:800 12px Manrope;color:var(--teal);letter-spacing:1px}.safety-card h3{font:700 15px Manrope;margin:7px 0}.safety-card p{font-size:13px;color:var(--muted);margin:0}
+    .roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.roadmap-card{background:white;border:1px solid var(--line);border-radius:14px;padding:20px}.roadmap-card .phase{font-size:11px;font-weight:800;color:#167f79;text-transform:uppercase;letter-spacing:1px}.roadmap-card h3{font:700 16px Manrope;margin:8px 0}.roadmap-card p{font-size:13px;color:var(--muted);margin:0}.roadmap-note{font-size:12px;color:var(--muted);margin-top:13px}
+    .viva-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:18px;align-items:start}.viva-aside{background:linear-gradient(155deg,#12203a,#1d4560);color:white;border-radius:16px;padding:24px;position:sticky;top:96px}.viva-aside .big-icon{font-size:30px}.viva-aside h3{font:800 21px Manrope;margin:12px 0 8px}.viva-aside p{font-size:13px;color:#c0d0e0;margin:0 0 18px}.viva-aside a{display:inline-block;background:#28aaa4;color:white;border-radius:8px;padding:9px 13px;font-size:12px;font-weight:700}.faq-list{display:grid;gap:10px}.faq-item{overflow:hidden}.faq-item summary{list-style:none;cursor:pointer;padding:17px 19px;display:flex;align-items:center;justify-content:space-between;gap:14px;font-weight:700;font-size:14px}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:after{content:"+";color:var(--teal);font-size:22px;font-weight:500}.faq-item[open] summary:after{content:"−"}.faq-answer{padding:0 19px 18px;color:var(--muted);font-size:13px}.faq-answer strong{color:var(--ink)}
+    .disclaimer{margin-top:55px;background:#fff8e9;border:1px solid #f1dfb8;border-radius:13px;padding:18px 21px;display:flex;gap:13px}.disclaimer b{display:block;font-size:14px}.disclaimer p{margin:3px 0 0;color:#756343;font-size:12px}.site-footer{background:#101b32;color:#b8c7d9;padding:25px 0}.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:12px}.footer-inner b{color:#fff}
+    @media(max-width:900px){.nav-links{gap:1px}.nav-link{padding:9px 8px;font-size:12px}.flow{grid-template-columns:repeat(2,1fr)}.flow-step:nth-child(2):after{display:none}.stack-grid{grid-template-columns:repeat(2,1fr)}.feature-grid,.safety-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:680px){.container{width:min(100% - 28px,1160px)}.site-header{height:66px}.mobile-nav-toggle{display:block}.nav-links{display:none;position:absolute;left:14px;right:14px;top:62px;background:#14243e;padding:10px;border:1px solid #34445d;border-radius:12px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch}.nav-links.nav-open{display:flex}.nav-link{font-size:14px;padding:11px}.brand{font-size:18px}.hero{padding:55px 0 65px}.hero h1{letter-spacing:-1.2px}.hero p{font-size:15px}.intro-strip{grid-template-columns:1fr;margin-top:-22px;padding:19px}.stat-mini{border-left:0;border-top:1px solid var(--line);padding:12px 0 0}.problem-grid,.viva-layout{grid-template-columns:1fr}.viva-aside{position:static}.feature-grid,.safety-grid,.roadmap{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.flow-step{min-height:0}.flow-step:after{display:none!important}.stack-grid{grid-template-columns:1fr 1fr}.architecture{padding:20px}.architecture-top{align-items:flex-start;flex-direction:column}.section{padding-top:48px}.footer-inner{display:block}.footer-inner span{display:block;margin-top:6px}}
+  </style>
 </head>
 <body>
-
-  <!-- Site Header -->
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="logo-link">
-        <span class="logo-shield">🛡️</span>
-        <span class="logo-text">ScamShield</span>
-        <span class="logo-badge">Docs & Viva</span>
-      </a>
-
-      <button class="mobile-nav-toggle" id="mobileNavBtn" aria-label="Toggle navigation menu">☰</button>
-
-      <nav>
+      <a href="index.html" class="brand"><span class="brand-mark">🛡</span><span>ScamShield</span><small>V1.0</small></a>
+      <button class="mobile-nav-toggle" id="mobileNavBtn" aria-label="Toggle navigation">☰</button>
+      <nav aria-label="Main navigation">
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="index.html#analyzerSection" class="nav-link">Analyze</a></li>
           <li><a href="report.html" class="nav-link">Report Scam</a></li>
           <li><a href="statistics.html" class="nav-link">Statistics</a></li>
           <li><a href="about.html" class="nav-link active">About & Viva</a></li>
-          <li><a href="index.html#analyzerSection" class="nav-link nav-cta">Quick Check</a></li>
+          <li><a href="index.html#analyzerSection" class="nav-link nav-cta">Quick Check ↗</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- Main Container -->
-  <main class="container" style="padding-top: 2.5rem; max-width: 1000px;">
-    
-    <!-- Title -->
-    <div style="margin-bottom: 2.5rem;">
-      <div class="hero-tag" style="background: rgba(15, 23, 42, 0.06); color: var(--primary-blue); border-color: rgba(15, 23, 42, 0.15);">
-        🎓 Project Documentation & Viva Guide
-      </div>
-      <h1 style="font-size: 2.4rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 0.75rem;">
-        About ScamShield
-      </h1>
-      <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7;">
-        An explainable, transparent AI/NLP-driven scam detection and cybersecurity awareness system engineered to combat digital social engineering and financial fraud.
-      </p>
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="eyebrow">🛡 Project overview · Architecture · Viva</span>
+      <h1>Security starts with<br><span>understanding the signal.</span></h1>
+      <p>Explore how ScamShield examines suspicious messages, explains the warning signs it finds, and helps people make safer decisions online.</p>
+      <div class="hero-meta"><span class="meta-pill">● Explainable detection</span><span class="meta-pill">● Modular Flask API</span><span class="meta-pill">● Local-first storage option</span></div>
+    </div>
+  </section>
+
+  <main class="container page-content">
+    <div class="intro-strip">
+      <div class="intro-main"><strong>Inside ScamShield</strong><span>A guided tour of the problem, the product and the engineering behind it.</span></div>
+      <div class="stat-mini"><b>0–100</b><span>Risk assessment scale</span></div>
+      <div class="stat-mini"><b>4 stages</b><span>Message analysis pipeline</span></div>
     </div>
 
-    <!-- Section 1: Problem & Mission -->
-    <section class="card mb-3">
-      <h2 class="card-title">🎯 The Problem & Our Mission</h2>
-      <p style="margin-bottom: 1rem; color: var(--text-secondary);">
-        Digital deception has reached unprecedented levels through deceptive SMS, phishing emails, WhatsApp impersonations, and fake part-time job portals. Ordinary users are routinely manipulated into sharing OTPs or paying advance registration fees under high psychological pressure.
-      </p>
-      <p style="color: var(--text-secondary);">
-        <strong>ScamShield's Solution:</strong> Rather than behaving like an opaque "black box" that simply labels text without explanation, ScamShield decomposes incoming communication into verifiable behavioral indicators (urgency, credential solicitation, shortened links, upfront payment demands) and provides an explainable 0–100 risk assessment with actionable defense steps.
-      </p>
-    </section>
-
-    <!-- Section 2: Technical Architecture -->
-    <section id="tech" class="card mb-3">
-      <h2 class="card-title">⚙️ Technical Architecture & Pipeline</h2>
-      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-        The system follows a modular 4-tier decoupled software architecture:
-      </p>
-
-      <div style="background: var(--bg-elevated); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); font-family: monospace; font-size: 0.9rem; line-height: 1.8; margin-bottom: 1.5rem;">
-        [User Input] &rarr; [Vanilla JS / HTML5 Client]<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&darr; REST (JSON)<br>
-        [Flask Application API Router (app.py)]<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&darr;<br>
-        [ScamDetector Engine]<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&boxur;&rarr; Text Normalization & Contextual Matcher (text_processor.py)<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&boxur;&rarr; Deep Link & TLD Inspector (detect_links)<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&boxur;&rarr; Category-Level Transparent Risk Scorer (risk_scorer.py)<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&boxur;&rarr; Plain-Language Rationale Generator<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&darr;<br>
-        [Database Layer (firebase.py)] &harr; Firebase Firestore (with local fallback)<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&darr;<br>
-        [Interactive Results Dashboard (Circular SVG Gauge + Threat Cards)]
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
-        <div style="padding: 1rem; border: 1px solid var(--border-light); border-radius: var(--radius-md);">
-          <strong>Frontend:</strong>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Semantic HTML5, CSS Grid/Flexbox, Vanilla JavaScript (No heavy frameworks).</p>
-        </div>
-        <div style="padding: 1rem; border: 1px solid var(--border-light); border-radius: var(--radius-md);">
-          <strong>Backend:</strong>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Python 3, Flask REST API, Modular Blueprints, Pytest automated testing.</p>
-        </div>
-        <div style="padding: 1rem; border: 1px solid var(--border-light); border-radius: var(--radius-md);">
-          <strong>Database:</strong>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Google Firebase Firestore with automatic offline JSON storage fallback.</p>
-        </div>
-        <div style="padding: 1rem; border: 1px solid var(--border-light); border-radius: var(--radius-md);">
-          <strong>Detection:</strong>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Explainable rule-based NLP, contextual phrase lookaround, URL shortener analysis.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 3: Safety Tips -->
-    <section id="safetyTips" class="card mb-3">
-      <h2 class="card-title">🛡️ Public Cybersecurity Guidelines</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
-        
-        <div style="padding: 1rem; border-left: 4px solid var(--risk-high); background: #fdfafb; border-radius: 4px;">
-          <h4 style="color: var(--risk-high); margin-bottom: 0.3rem;">1. OTP & 2FA Security</h4>
-          <p style="font-size: 0.85rem; color: var(--text-secondary);">Never share one-time passwords with anyone, including individuals claiming to be bank executives, police, or courier agents.</p>
-        </div>
-
-        <div style="padding: 1rem; border-left: 4px solid var(--risk-high); background: #fdfafb; border-radius: 4px;">
-          <h4 style="color: var(--risk-high); margin-bottom: 0.3rem;">2. Banking & CVV Protection</h4>
-          <p style="font-size: 0.85rem; color: var(--text-secondary);">Do not enter your ATM PIN or CVV code to receive funds. UPI PIN is required ONLY to send money, never to receive money.</p>
-        </div>
-
-        <div style="padding: 1rem; border-left: 4px solid var(--risk-attention); background: #fdfdfa; border-radius: 4px;">
-          <h4 style="color: var(--risk-attention); margin-bottom: 0.3rem;">3. Link Inspection (HTTPS Fallacy)</h4>
-          <p style="font-size: 0.85rem; color: var(--text-secondary);">HTTPS only guarantees that data is encrypted in transit?it does not verify whether the site owner is a legitimate organization or an attacker.</p>
-        </div>
-
-        <div style="padding: 1rem; border-left: 4px solid var(--risk-attention); background: #fdfdfa; border-radius: 4px;">
-          <h4 style="color: var(--risk-attention); margin-bottom: 0.3rem;">4. Upfront Job Fees</h4>
-          <p style="font-size: 0.85rem; color: var(--text-secondary);">No legitimate company charges job applicants for security deposits, interviews, or laptop insurance fees.</p>
-        </div>
-
-        <div style="padding: 1rem; border-left: 4px solid var(--primary-blue); background: #fafbfe; border-radius: 4px;">
-          <h4 style="color: var(--primary-blue); margin-bottom: 0.3rem;">5. Investment "Guarantees"</h4>
-          <p style="font-size: 0.85rem; color: var(--text-secondary);">High returns with zero risk do not exist in genuine financial markets. Promises to double money within days are pyramid schemes.</p>
-        </div>
-
-        <div style="padding: 1rem; border-left: 4px solid var(--primary-blue); background: #fafbfe; border-radius: 4px;">
-          <h4 style="color: var(--primary-blue); margin-bottom: 0.3rem;">6. Government & Police Impersonation</h4>
-          <p style="font-size: 0.85rem; color: var(--text-secondary);">Law enforcement and tax departments do not conduct investigations or demand payment settlement over WhatsApp or Telegram calls.</p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Section 4: Future AI/ML Roadmap -->
-    <section class="card mb-3">
-      <h2 class="card-title">🚀 Future AI/ML Roadmap (v2.0 & v3.0)</h2>
-      <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-        ScamShield was intentionally architected with modular interfaces so statistical machine learning and modern transformer models can be layered over the rule-based foundation:
-      </p>
-
-      <ul style="list-style: none; padding-left: 0;">
-        <li style="margin-bottom: 0.8rem; display: flex; gap: 0.6rem;">
-          <span style="color: var(--accent-cyan); font-weight: 800;">&rarr;</span>
-          <div>
-            <strong>Phase 2 - TF-IDF & Classical ML:</strong>
-            <span style="color: var(--text-secondary); font-size: 0.9rem;">
-              Implement scikit-learn TF-IDF vectorizers with a Random Forest or Logistic Regression classifier trained on public SMS Spam & Enron phishing corpora to generate statistical probability scores.
-            </span>
+    <section class="section" id="mission">
+      <div class="section-head"><span class="kicker">01 / The purpose</span><h2>Scams exploit trust. We make warning signs visible.</h2><p>Scam messages often rely on urgency, impersonation, fear, attractive rewards or requests for sensitive information. ScamShield turns those signals into an understandable assessment instead of presenting an unexplained label.</p></div>
+      <div class="problem-grid">
+        <article class="panel">
+          <h3>What problem are we solving?</h3>
+          <p>People receive suspicious SMS messages, WhatsApp forwards, emails, fake job offers and payment requests every day. It can be difficult to distinguish a genuine notification from social engineering, especially when a message pressures the recipient to act immediately.</p>
+          <div class="callout"><strong>Our approach:</strong> identify observable indicators, combine them into a bounded risk score, explain why they matter, and suggest safer next steps. The result is decision support—not a guarantee that a message is fraudulent or genuine.</div>
+        </article>
+        <article class="panel">
+          <h3>Signals the detector looks for</h3>
+          <div class="challenge-list">
+            <div class="challenge"><span class="challenge-icon">⏱️</span><div><b>Urgency and threats</b><span>Pressure to act immediately or fear of account closure.</span></div></div>
+            <div class="challenge"><span class="challenge-icon">🔐</span><div><b>Credential requests</b><span>Attempts to obtain OTPs, passwords or sensitive details.</span></div></div>
+            <div class="challenge"><span class="challenge-icon">🔗</span><div><b>Suspicious links</b><span>Shortened URLs, IP-based hosts and unusual domain signals.</span></div></div>
+            <div class="challenge"><span class="challenge-icon">💸</span><div><b>Advance payments</b><span>Registration fees, processing charges and unrealistic rewards.</span></div></div>
           </div>
-        </li>
-        <li style="margin-bottom: 0.8rem; display: flex; gap: 0.6rem;">
-          <span style="color: var(--accent-cyan); font-weight: 800;">&rarr;</span>
-          <div>
-            <strong>Phase 3 - Fine-Tuned Transformer Models (BERT / RoBERTa):</strong>
-            <span style="color: var(--text-secondary); font-size: 0.9rem;">
-              Deploy a distilled BERT model (e.g. TinyBERT or MobileBERT) for deep contextual semantic understanding, semantic role labeling, and multilingual intent classification across regional languages.
-            </span>
-          </div>
-        </li>
-        <li style="margin-bottom: 0.8rem; display: flex; gap: 0.6rem;">
-          <span style="color: var(--accent-cyan); font-weight: 800;">&rarr;</span>
-          <div>
-            <strong>Phase 4 - Hybrid Ensemble Engine:</strong>
-            <span style="color: var(--text-secondary); font-size: 0.9rem;">
-              Ensemble the outputs: <em>Final Score = 0.4 &times; Rule-Engine + 0.3 &times; BERT-Embedding + 0.3 &times; Community-Reputation</em>. This guarantees that explainability is never lost even with deep learning!
-            </span>
-          </div>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Section 5: College Presentation & Viva Interview Guide -->
-    <section id="viva" class="card mb-3" style="border-left: 4px solid var(--primary-blue);">
-      <h2 class="card-title" style="color: var(--primary-blue);">
-        🎓 College Viva & Placement Interview Q&A Guide
-      </h2>
-      <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">
-        Review these frequently asked questions to confidently present ScamShield in front of internal/external examiners or technical recruiters:
-      </p>
-
-      <div style="display: flex; flex-direction: column; gap: 1.25rem;">
-        
-        <div style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md);">
-          <strong style="color: var(--primary-navy); font-size: 1rem;">Q1: Why did you choose an explainable rule-based system instead of a pure deep-learning model for Version 1?</strong>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.6;">
-            <strong>Answer:</strong> In cybersecurity, trust and explainability are paramount. Pure deep-learning models (e.g. black-box neural networks) output a probability score but cannot explain <em>why</em> a message was flagged. Our system breaks down the attack into concrete vectors (such as shortened links, advance fee demands, or predatory OTP requests) and provides actionable defense recommendations. Additionally, rule-based heuristics have zero inference latency and work entirely on-premise without paid external APIs.
-          </p>
-        </div>
-
-        <div style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md);">
-          <strong style="color: var(--primary-navy); font-size: 1rem;">Q2: How does ScamShield prevent false positives on legitimate bank alerts that contain the word "OTP"?</strong>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.6;">
-            <strong>Answer:</strong> We implemented contextual pattern analysis in <code>TextProcessor</code>. If a message contains benign advisory language like <em>"NEVER share your OTP"</em> or <em>"Bank will never ask for your code"</em>, the system recognizes that the message is a safety alert and suppresses the predatory OTP indicator, correctly scoring the message at 0 (Low Risk).
-          </p>
-        </div>
-
-        <div style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md);">
-          <strong style="color: var(--primary-navy); font-size: 1rem;">Q3: Why doesn't repeat keyword spam artificially inflate the risk score?</strong>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.6;">
-            <strong>Answer:</strong> In <code>RiskScorer</code>, we use category-level aggregation rather than raw keyword counting. Even if a message contains five different urgency keywords ("immediately", "urgent", "hurry"), the "Urgency" category is counted only once (+10 points), preventing artificial inflation and keeping scores bounded in 0–100.
-          </p>
-        </div>
-
-        <div style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md);">
-          <strong style="color: var(--primary-navy); font-size: 1rem;">Q4: What is the difference between "Risk Score" and "Probability of Fraud"?</strong>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.6;">
-            <strong>Answer:</strong> A risk score measures the density and severity of suspicious behavioral indicators present in the text. ScamShield explicitly refrains from claiming 100% certainty that a message is fraudulent, because legitimate human messages may occasionally contain unusual phrasing. Our metric informs user vigilance rather than making legal determinations.
-          </p>
-        </div>
-
-        <div style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md);">
-          <strong style="color: var(--primary-navy); font-size: 1rem;">Q5: How does ScamShield analyze URLs? Does HTTPS guarantee safety?</strong>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.6;">
-            <strong>Answer:</strong> The link inspector analyzes URL protocols, URL shorteners (bit.ly, tinyurl), high-risk TLDs (.xyz, .top), raw IP addresses, and excessive subdomains. Importantly, ScamShield teaches users that HTTPS only provides in-transit encryption between browser and server—it does NOT verify the honesty or legitimacy of the website owner.
-          </p>
-        </div>
-
-        <div style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md);">
-          <strong style="color: var(--primary-navy); font-size: 1rem;">Q6: How does the database layer integrate with Firebase Firestore?</strong>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.6;">
-            <strong>Answer:</strong> We implemented a Repository pattern in <code>firebase.py</code>. If a Firebase service account credential file is provided in <code>.env</code>, it connects to Google Cloud Firestore. If credentials are not present, it seamlessly falls back to a resilient local JSON datastore, allowing the system to run out-of-the-box in any evaluation environment without crashing.
-          </p>
-        </div>
-
-        <div style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md);">
-          <strong style="color: var(--primary-navy); font-size: 1rem;">Q7: What privacy and security measures protect users when submitting reports?</strong>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.6;">
-            <strong>Answer:</strong> We enforce strict input validation, length bounds (10 to 5,000 characters), anonymous masking by default, and automated client/server credential scrubbing to reject or warn against accidental submission of payment card CVVs or bank PINs.
-          </p>
-        </div>
-
+        </article>
       </div>
     </section>
 
-    <!-- Section 6: Limitations & Disclaimer -->
-    <section class="card mb-3">
-      <h2 class="card-title">⚠️ Limitations & Legal Disclaimer</h2>
-      <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.5rem;">
-        ScamShield provides an automated risk assessment based on detected indicators and does not guarantee that a message is a scam or genuine. Sophisticated targeted spear-phishing messages that avoid obvious trigger words may receive lower scores. Always verify official requests directly with organizations through independent channels.
-      </p>
+    <section class="section" id="architecture">
+      <div class="section-head"><span class="kicker">02 / Under the hood</span><h2>From message to meaningful explanation.</h2><p>The frontend sends the message to a Flask REST endpoint. The backend validates and analyzes it, then returns structured results for the interface to display.</p></div>
+      <div class="architecture">
+        <div class="architecture-top"><h3>ScamShield · Analysis pipeline</h3><span>VERSION 1.0 · CURRENT IMPLEMENTATION</span></div>
+        <div class="flow">
+          <div class="flow-step"><span class="flow-num">STAGE 01</span><h4>Message input</h4><p>User pastes a suspicious message into the HTML interface.</p></div>
+          <div class="flow-step"><span class="flow-num">STAGE 02</span><h4>API & validation</h4><p>Flask receives JSON and checks the message before analysis.</p></div>
+          <div class="flow-step"><span class="flow-num">STAGE 03</span><h4>Detection engine</h4><p>Text patterns, URL signals and risk categories are evaluated.</p></div>
+          <div class="flow-step"><span class="flow-num">STAGE 04</span><h4>Explainable result</h4><p>Risk score, indicators, explanation and recommendations return to the UI.</p></div>
+        </div>
+        <div class="stack-grid">
+          <div class="stack-card"><b>Frontend</b><span>HTML5 · CSS3 · Vanilla JavaScript</span></div>
+          <div class="stack-card"><b>Backend</b><span>Python · Flask · REST API</span></div>
+          <div class="stack-card"><b>Storage</b><span>Firestore integration · Local JSON fallback</span></div>
+          <div class="stack-card"><b>Quality checks</b><span>Pytest · API and detector tests</span></div>
+        </div>
+      </div>
     </section>
 
+    <section class="section" id="capabilities">
+      <div class="section-head"><span class="kicker">03 / Product capabilities</span><h2>More than a red or green label.</h2><p>Each module has a distinct role in helping users inspect messages and understand community-level scam patterns.</p></div>
+      <div class="feature-grid">
+        <article class="feature-card"><span class="feature-icon">🎯</span><h3>Risk assessment</h3><p>A score from 0 to 100 groups the observed signals into Low Risk, Needs Attention, Suspicious or High Risk bands.</p></article>
+        <article class="feature-card"><span class="feature-icon">🧩</span><h3>Explainable indicators</h3><p>Detected categories and matched evidence help users understand which message features contributed to the assessment.</p></article>
+        <article class="feature-card"><span class="feature-icon">🔎</span><h3>Link inspection</h3><p>Checks URL characteristics such as protocol, common shorteners, IP-based hosts and selected suspicious TLDs.</p></article>
+        <article class="feature-card"><span class="feature-icon">📝</span><h3>Community reports</h3><p>Users can submit scam encounters to support awareness. Anonymous sender details are masked in public report output.</p></article>
+        <article class="feature-card"><span class="feature-icon">📊</span><h3>Threat statistics</h3><p>Aggregated reports are summarized by category and platform to show patterns in submitted incidents.</p></article>
+        <article class="feature-card"><span class="feature-icon">💾</span><h3>Flexible storage</h3><p>Firestore can be configured for cloud storage. Without credentials, the application uses a local JSON fallback.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="safety">
+      <div class="section-head"><span class="kicker">04 / Stay protected</span><h2>Six habits that make digital life safer.</h2><p>ScamShield supports awareness, but good security habits remain the first line of defence.</p></div>
+      <div class="safety-grid">
+        <article class="safety-card"><span class="number">TIP 01</span><h3>Keep OTPs private</h3><p>Never disclose an OTP, password, PIN or recovery code to someone who contacts you unexpectedly.</p></article>
+        <article class="safety-card"><span class="number">TIP 02</span><h3>Verify payment requests</h3><p>Never enter a UPI PIN to receive money. A UPI PIN authorizes a payment from your account.</p></article>
+        <article class="safety-card"><span class="number">TIP 03</span><h3>Inspect links carefully</h3><p>HTTPS encrypts a connection; it does not prove that a website or its owner is trustworthy.</p></article>
+        <article class="safety-card"><span class="number">TIP 04</span><h3>Question upfront fees</h3><p>Be cautious of job offers that demand deposits, registration charges or payment to unlock earnings.</p></article>
+        <article class="safety-card"><span class="number">TIP 05</span><h3>Be sceptical of guarantees</h3><p>Promises of unusually high, risk-free returns or instant rewards deserve independent verification.</p></article>
+        <article class="safety-card"><span class="number">TIP 06</span><h3>Verify the sender independently</h3><p>Contact banks, companies or authorities through an official website or known phone number—not the message link.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="roadmap">
+      <div class="section-head"><span class="kicker">05 / What's next</span><h2>A roadmap for future versions.</h2><p>These are planned enhancements, not capabilities claimed for the current V1.0 implementation.</p></div>
+      <div class="roadmap">
+        <article class="roadmap-card"><span class="phase">Phase 2 · Planned</span><h3>Classical machine learning</h3><p>Experiment with TF-IDF features and models such as Logistic Regression or Random Forest using labelled scam and legitimate-message datasets.</p></article>
+        <article class="roadmap-card"><span class="phase">Phase 3 · Planned</span><h3>Context-aware language models</h3><p>Evaluate compact transformer models for richer context understanding and multilingual message analysis.</p></article>
+        <article class="roadmap-card"><span class="phase">Phase 4 · Planned</span><h3>Hybrid risk intelligence</h3><p>Explore combining rule-based evidence, model predictions and carefully validated community signals into one explainable assessment.</p></article>
+      </div>
+      <p class="roadmap-note">Model selection, training data, evaluation metrics and score calibration would need to be validated before these features are released.</p>
+    </section>
+
+    <section class="section" id="viva">
+      <div class="section-head"><span class="kicker">06 / Be ready to explain</span><h2>Project viva, without memorising blindly.</h2><p>Use these questions to explain the design decisions, implementation and current limitations of ScamShield.</p></div>
+      <div class="viva-layout">
+        <aside class="viva-aside"><div class="big-icon">🎓</div><h3>Know your project. Own your answers.</h3><p>Start with the problem, explain the data flow, then justify the technical choices. The answers below are based on the current V1.0 project.</p><a href="#architecture">Review architecture ↑</a></aside>
+        <div class="faq-list">
+          <details class="faq-item"><summary>1. Why did you choose a rule-based detector for V1.0?</summary><div class="faq-answer"><strong>Answer:</strong> It is lightweight, fast and easier to explain during the first version. We can show which observable patterns—such as urgency, credential requests or suspicious links—contributed to the result. A limitation is that rules may miss sophisticated messages that use unfamiliar wording.</div></details>
+          <details class="faq-item"><summary>2. Is ScamShield really using a trained AI or ML model?</summary><div class="faq-answer"><strong>Answer:</strong> The current V1.0 detector is primarily a rule-based, explainable text-analysis system. It uses programmed patterns and scoring logic; it does not currently run a trained transformer or a supervised ML classifier. Machine-learning models are part of the future roadmap.</div></details>
+          <details class="faq-item"><summary>3. How does the system calculate its risk score?</summary><div class="faq-answer"><strong>Answer:</strong> The detector extracts indicators and the risk scorer aggregates category-level signals into a bounded score between 0 and 100. The score is an assessment of observed risk indicators, not a statistically calibrated probability that fraud has occurred.</div></details>
+          <details class="faq-item"><summary>4. How do you reduce false positives for bank OTP warnings?</summary><div class="faq-answer"><strong>Answer:</strong> The text processor checks context, not just the presence of the word OTP. For example, a message warning users never to share their OTP is different from a message asking users to send an OTP. Contextual suppression helps avoid flagging some legitimate safety advisories.</div></details>
+          <details class="faq-item"><summary>5. What happens when a user submits a message?</summary><div class="faq-answer"><strong>Answer:</strong> The browser sends a JSON request to the Flask <code>/api/analyze</code> endpoint. The backend validates the input, passes it to the detector and returns structured JSON containing the score, risk level, indicators, explanation, recommendations and disclaimer. JavaScript renders those results on the page.</div></details>
+          <details class="faq-item"><summary>6. Why is HTTPS not enough to trust a link?</summary><div class="faq-answer"><strong>Answer:</strong> HTTPS protects data in transit between the browser and the website. It does not establish that the website operator is legitimate. A phishing website can also use HTTPS, so the domain and the context of the message still need to be checked.</div></details>
+          <details class="faq-item"><summary>7. How does the database work without Firebase?</summary><div class="faq-answer"><strong>Answer:</strong> The database manager attempts to initialize Firestore when valid service-account credentials are configured. If credentials are absent or unavailable, it uses a local JSON file for report storage. This makes local demonstrations possible without cloud setup.</div></details>
+          <details class="faq-item"><summary>8. What privacy protections are implemented for reports?</summary><div class="faq-answer"><strong>Answer:</strong> The report route validates submitted fields, and public report retrieval masks sender details when a report is marked anonymous. The application also includes input validation and credential-related checks. We should still avoid submitting real OTPs, passwords, PINs or other sensitive information.</div></details>
+          <details class="faq-item"><summary>9. What are the current limitations?</summary><div class="faq-answer"><strong>Answer:</strong> The detector relies on known patterns and heuristics, so it can miss new or context-heavy scam techniques and may occasionally flag unusual legitimate messages. URL inspection is based on URL characteristics; it is not a live reputation or malware scan of the destination website.</div></details>
+          <details class="faq-item"><summary>10. How would you evaluate a future ML version?</summary><div class="faq-answer"><strong>Answer:</strong> I would use a labelled dataset with separate training, validation and test splits. I would measure precision, recall, F1-score and confusion matrix results, paying particular attention to false positives and false negatives. I would compare the model against the existing rule-based baseline.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <div class="disclaimer"><span>⚠️</span><div><b>Important limitation</b><p>ScamShield provides an automated risk assessment based on detected indicators. It cannot guarantee whether a message is genuine or fraudulent. Verify important requests independently through official channels.</p></div></div>
   </main>
 
-  <!-- Site Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-bottom">
-        &copy; 2026 ScamShield System. Academic presentation ready.
-      </div>
-    </div>
-  </footer>
-
+  <footer class="site-footer"><div class="container footer-inner"><b>🛡 ScamShield</b><span>Think before you click. Verify before you trust.</span><span>Academic project · Version 1.0</span></div></footer>
+  <script>
+    const menuButton = document.getElementById('mobileNavBtn');
+    const nav = document.getElementById('navLinks');
+    if (menuButton && nav) menuButton.addEventListener('click', () => nav.classList.toggle('nav-open'));
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('toggle', () => {
+        if (item.open) document.querySelectorAll('.faq-item').forEach(other => { if (other !== item) other.open = false; });
+      });
+    });
+  </script>
 </body>
 </html>
