@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore how ScamShield detects suspicious messages, protects users, and explains risk indicators. Includes project architecture and viva questions.">
-  <title>About & Viva | ScamShield</title>
+  <meta name="description" content="Explore the ScamShield project, its architecture, detection capabilities, safety guidance and future roadmap.">
+  <title>About ScamShield | Project Overview</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -36,7 +36,7 @@
           <li><a href="index.html#analyzerSection" class="nav-link">Analyze</a></li>
           <li><a href="report.html" class="nav-link">Report Scam</a></li>
           <li><a href="statistics.html" class="nav-link">Statistics</a></li>
-          <li><a href="about.html" class="nav-link active">About & Viva</a></li>
+          <li><a href="about.html" class="nav-link active">About</a></li>
           <li><a href="index.html#analyzerSection" class="nav-link nav-cta">Quick Check ↗</a></li>
         </ul>
       </nav>
@@ -45,7 +45,7 @@
 
   <section class="hero">
     <div class="container hero-content">
-      <span class="eyebrow">🛡 Project overview · Architecture · Viva</span>
+      <span class="eyebrow">🛡 Project overview · Architecture · Capabilities</span>
       <h1>Security starts with<br><span>understanding the signal.</span></h1>
       <p>Explore how ScamShield examines suspicious messages, explains the warning signs it finds, and helps people make safer decisions online.</p>
       <div class="hero-meta"><span class="meta-pill">● Explainable detection</span><span class="meta-pill">● Modular Flask API</span><span class="meta-pill">● Local-first storage option</span></div>
@@ -130,25 +130,6 @@
         <article class="roadmap-card"><span class="phase">Phase 4 · Planned</span><h3>Hybrid risk intelligence</h3><p>Explore combining rule-based evidence, model predictions and carefully validated community signals into one explainable assessment.</p></article>
       </div>
       <p class="roadmap-note">Model selection, training data, evaluation metrics and score calibration would need to be validated before these features are released.</p>
-    </section>
-
-    <section class="section" id="viva">
-      <div class="section-head"><span class="kicker">06 / Be ready to explain</span><h2>Project viva, without memorising blindly.</h2><p>Use these questions to explain the design decisions, implementation and current limitations of ScamShield.</p></div>
-      <div class="viva-layout">
-        <aside class="viva-aside"><div class="big-icon">🎓</div><h3>Know your project. Own your answers.</h3><p>Start with the problem, explain the data flow, then justify the technical choices. The answers below are based on the current V1.0 project.</p><a href="#architecture">Review architecture ↑</a></aside>
-        <div class="faq-list">
-          <details class="faq-item"><summary>1. Why did you choose a rule-based detector for V1.0?</summary><div class="faq-answer"><strong>Answer:</strong> It is lightweight, fast and easier to explain during the first version. We can show which observable patterns—such as urgency, credential requests or suspicious links—contributed to the result. A limitation is that rules may miss sophisticated messages that use unfamiliar wording.</div></details>
-          <details class="faq-item"><summary>2. Is ScamShield really using a trained AI or ML model?</summary><div class="faq-answer"><strong>Answer:</strong> The current V1.0 detector is primarily a rule-based, explainable text-analysis system. It uses programmed patterns and scoring logic; it does not currently run a trained transformer or a supervised ML classifier. Machine-learning models are part of the future roadmap.</div></details>
-          <details class="faq-item"><summary>3. How does the system calculate its risk score?</summary><div class="faq-answer"><strong>Answer:</strong> The detector extracts indicators and the risk scorer aggregates category-level signals into a bounded score between 0 and 100. The score is an assessment of observed risk indicators, not a statistically calibrated probability that fraud has occurred.</div></details>
-          <details class="faq-item"><summary>4. How do you reduce false positives for bank OTP warnings?</summary><div class="faq-answer"><strong>Answer:</strong> The text processor checks context, not just the presence of the word OTP. For example, a message warning users never to share their OTP is different from a message asking users to send an OTP. Contextual suppression helps avoid flagging some legitimate safety advisories.</div></details>
-          <details class="faq-item"><summary>5. What happens when a user submits a message?</summary><div class="faq-answer"><strong>Answer:</strong> The browser sends a JSON request to the Flask <code>/api/analyze</code> endpoint. The backend validates the input, passes it to the detector and returns structured JSON containing the score, risk level, indicators, explanation, recommendations and disclaimer. JavaScript renders those results on the page.</div></details>
-          <details class="faq-item"><summary>6. Why is HTTPS not enough to trust a link?</summary><div class="faq-answer"><strong>Answer:</strong> HTTPS protects data in transit between the browser and the website. It does not establish that the website operator is legitimate. A phishing website can also use HTTPS, so the domain and the context of the message still need to be checked.</div></details>
-          <details class="faq-item"><summary>7. How does the database work without Firebase?</summary><div class="faq-answer"><strong>Answer:</strong> The database manager attempts to initialize Firestore when valid service-account credentials are configured. If credentials are absent or unavailable, it uses a local JSON file for report storage. This makes local demonstrations possible without cloud setup.</div></details>
-          <details class="faq-item"><summary>8. What privacy protections are implemented for reports?</summary><div class="faq-answer"><strong>Answer:</strong> The report route validates submitted fields, and public report retrieval masks sender details when a report is marked anonymous. The application also includes input validation and credential-related checks. We should still avoid submitting real OTPs, passwords, PINs or other sensitive information.</div></details>
-          <details class="faq-item"><summary>9. What are the current limitations?</summary><div class="faq-answer"><strong>Answer:</strong> The detector relies on known patterns and heuristics, so it can miss new or context-heavy scam techniques and may occasionally flag unusual legitimate messages. URL inspection is based on URL characteristics; it is not a live reputation or malware scan of the destination website.</div></details>
-          <details class="faq-item"><summary>10. How would you evaluate a future ML version?</summary><div class="faq-answer"><strong>Answer:</strong> I would use a labelled dataset with separate training, validation and test splits. I would measure precision, recall, F1-score and confusion matrix results, paying particular attention to false positives and false negatives. I would compare the model against the existing rule-based baseline.</div></details>
-        </div>
-      </div>
     </section>
 
     <div class="disclaimer"><span>⚠️</span><div><b>Important limitation</b><p>ScamShield provides an automated risk assessment based on detected indicators. It cannot guarantee whether a message is genuine or fraudulent. Verify important requests independently through official channels.</p></div></div>
