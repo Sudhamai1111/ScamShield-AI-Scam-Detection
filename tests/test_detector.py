@@ -85,6 +85,25 @@ class TestScamDetector:
         res = detector.analyze_message(msg)
         assert any(l["is_ip"] for l in res["links_analyzed"])
 
+
+    # 18. Obfuscated shortened link combined with account-blocking threat
+    def test_obfuscated_bank_suspension_link(self, detector):
+        msg = (
+            "SBI ALERT: Your account will be blocked today. "
+            "Verify immediately at hxxp://bit[dot]ly/sbi-verify to avoid suspension."
+        )
+        res = detector.analyze_message(msg)
+        indicator_types = {item["type"] for item in res["indicators"]}
+
+        assert res["risk_score"] >= 51
+        assert res["risk_level"] == "Suspicious"
+        assert "Urgency" in indicator_types
+        assert "Threatening Language" in indicator_types
+        assert "Suspicious Link" in indicator_types
+        assert "URL Shortener" in indicator_types
+        assert res["links_analyzed"][0]["hostname"] == "bit.ly"
+        assert res["links_analyzed"][0]["is_shortened"] is True
+
     # 10. Suspicious: Legal / Police Threat
     def test_legal_action_threat(self, detector):
         msg = "Final notice: Legal action and police case will be initiated against you within 24 hours."
